@@ -1,0 +1,39 @@
+.modal__content_type_image {
+  background-color: #fff;
+  padding: 0;
+  max-width: 498px;
+}
+
+.modal__image {
+  border-radius: 16px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+}
+
+.modal__footer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 32px 32px;
+}
+
+.modal__caption {
+  font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  padding-bottom: 12px;
+}
+
+.modal__weather {
+  font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.modal__close_item_modal {
+  background: transparent url(../../assets/close_white.svg) center no-repeat;
+}
