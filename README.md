@@ -4,7 +4,7 @@
 
 A full-stack web application called “WTWR”. This application reads weather data from a Weather API and then recommends suitable clothing to the user based on that data.
 
-### Technologies Used
+## Technologies Used
 
 - Figma for design content
 - HTML5 for structuring web content
@@ -14,16 +14,17 @@ A full-stack web application called “WTWR”. This application reads weather d
 - React + Vite
 - JS and CSS files grouped by components
 - VS code
+- Git
 
-### Screenshots
+## Screenshots
 
-![Screenshots](../../projects/se_project_react/src/assets/readme/WeatherApp.png)
+[Screenshots](../../projects/se_project_react/src/assets/readme/WeatherApp.png)
 
-### Links
+## Links
 
 [https://michelleoco.github.io/se_project_react/](https://michelleoco.github.io/se_project_react/)
 
-### Plans for Future Improvements
+## Plans for Future Improvements
 
 - Add card like and delete functionality
 - Update clothing images
