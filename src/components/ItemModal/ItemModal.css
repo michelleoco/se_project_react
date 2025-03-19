@@ -2,6 +2,7 @@
   background-color: #fff;
   padding: 0;
   max-width: 498px;
+  position: relative;
 }
 
 .modal__image {
@@ -9,6 +10,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
+  padding: 0;
 }
 
 .modal__footer {
@@ -36,4 +38,22 @@
 
 .modal__close_item_modal {
   background: transparent url(../../assets/close_white.svg) center no-repeat;
+}
+
+.modal__delete {
+  border: none;
+  color: #ff4d00;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  width: 101px;
+  height: 24px;
+  position: absolute;
+  left: 365px;
+  bottom: 70px;
+  padding: 0;
+  margin-right: 32px;
 }

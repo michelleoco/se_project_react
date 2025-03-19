@@ -1,0 +1,38 @@
+.modal__content-confirmation-delete {
+  max-width: 670px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 60px;
+}
+
+.modal__confirmation-text {
+  display: block;
+  margin: 0 auto;
+}
+
+.modal__close-confirmation-delete {
+  top: 0;
+  right: 0;
+  margin: 20px 20px;
+}
+
+.modal__delete-item {
+  color: #ff4d00;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.modal__cancel {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-top: 24px;
+}

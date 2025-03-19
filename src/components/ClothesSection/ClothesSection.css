@@ -1,0 +1,31 @@
+.clothes-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.clothes-section__header {
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+}
+
+.clothes-section__header-title {
+  margin: 16px 0;
+}
+
+.clothes-section__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 325px);
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.clothes-section__add-new-btn {
+  margin: 0 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  opacity: 60%;
+}

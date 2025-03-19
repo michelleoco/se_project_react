@@ -1,0 +1,15 @@
+.profile {
+  display: flex;
+  gap: 60px;
+  font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.profile__clothing-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
