@@ -34,7 +34,6 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log(card);
   };
 
   const handleAddClick = () => {
@@ -46,18 +45,17 @@ function App() {
   };
 
   const handleDeleteCard = () => {
-    console.log(clothingItems);
-    removeItems(selectedCard._id).then(() =>
-      setClothingItems(
-        clothingItems.filter((item) => item._id !== selectedCard._id)
-      )
-    );
-    console.log(clothingItems);
-    closeActiveModal();
+    removeItems(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== selectedCard._id)
+        );
+        closeActiveModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   const openConfirmationModal = () => {
-    console.log("working");
     setActiveModal("delete");
   };
 
@@ -65,18 +63,13 @@ function App() {
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1; //gives added cards the correct _id:
     const newItem = { _id: newId, name, imageUrl, weather };
 
-    addItem(name, imageUrl, weather).then((prevItems) => {
-      console.log(prevItems);
-      setClothingItems((prevItems) => [newItem, ...prevItems]);
-
-      //setClothingItems((item) => [newItem, ...prevItems]);
-      closeActiveModal();
-    });
-    //using a function here guarantees that react will pass the most recently updated state as the first parameter
-    //this diminishes the possibility of getting a "stale" clothingItems state
-    //setClothingItems([newItem, ...clothingItems]); //updates clothingItems array
-
-    closeActiveModal(); //close the modal
+    addItem(name, imageUrl, weather)
+      .then((prevItems) => {
+        console.log(prevItems);
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -85,16 +78,15 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => console.log(err));
   }, []);
 
   return (
