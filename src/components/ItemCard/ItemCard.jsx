@@ -6,7 +6,6 @@ import likeButtonActive from "../../assets/like_button_liked.svg";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const { currentUser, is } = useContext(CurrentUserContext);
-  console.log("Current User:", currentUser);
 
   // Determine if user is logged in by checking if currentUser exists
   const isLoggedIn = Boolean(currentUser);

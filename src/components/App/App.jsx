@@ -195,7 +195,7 @@ function App() {
     if (jwt) {
       checkToken(jwt)
         .then((userData) => {
-          console.log("User data from token:", userData);
+          // console.log("User data from token:", userData);
           setIsLoggedIn(true);
           setCurrentUser(userData);
         })
