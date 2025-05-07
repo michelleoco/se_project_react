@@ -21,6 +21,11 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("AddItemModal handleSubmit called with values:", {
+      name,
+      imageUrl,
+      weather,
+    });
     onAddItemModalSubmit({ name, imageUrl, weather }); //pass the inputs(state variables) (if passed as an object, remeber to desructure when passing to handleAddItemModalSubmit in App.jsx )
   };
 
@@ -38,6 +43,7 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit} //renaming convention in react to rename the function with "on" when its passed as a prop
+      onClick={() => console.log("Button clicked!")}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}

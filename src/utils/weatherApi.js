@@ -15,6 +15,7 @@ const filterWeatherData = (data) => {
   };
   result.type = getWeatherType(result.temp.F);
   result.isDay = isDay(data.sys, Date.now());
+
   result.condition = data.weather[0].main.toLowerCase();
   return result;
 };
@@ -26,9 +27,9 @@ const isDay = ({ sunrise, sunset }, now) => {
 const getWeatherType = (temperature) => {
   if (temperature >= 86) {
     return "hot";
-  } else if (temperature >= 66 && temperature <= 85) {
+  } else if (temperature >= 56 && temperature <= 85) {
     return "warm";
-  } else if (temperature <= 64) {
+  } else if (temperature <= 55) {
     return "cold";
   }
 };

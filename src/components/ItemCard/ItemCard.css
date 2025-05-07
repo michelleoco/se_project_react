@@ -25,3 +25,25 @@
   border-radius: 19px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+
+.card__like-button {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 10px;
+  left: auto;
+  right: 80px;
+}
+
+.card__like-button:hover {
+  opacity: 0.7;
+}
+
+.card__like-button_active {
+  color: #2f71e5;
+  font-weight: bold;
+}
