@@ -3,6 +3,18 @@ const getToken = () => {
   return localStorage.getItem("jwt");
 };
 
+const BASE_HEADERS = {
+  "Content-Type": "application/json",
+};
+
+const getAuthHeaders = () => {
+  const token = getToken();
+  return {
+    ...BASE_HEADERS,
+    authorization: `Bearer ${token}`,
+  };
+};
+
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
@@ -14,70 +26,49 @@ function request(url, options) {
 function getItems() {
   return request(`${baseUrl}/items`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: BASE_HEADERS,
   });
 }
 
 function removeItems(id) {
-  const token = getToken();
   return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getAuthHeaders(),
   });
 }
 
 function addItem(name, imageUrl, weather) {
-  const token = getToken();
   return request(`${baseUrl}/items`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getAuthHeaders(),
     body: JSON.stringify({ name, imageUrl, weather }),
   });
 }
 
 function likeItem(itemId) {
-  const token = getToken();
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
+    headers: getAuthHeaders(),
+  });
 }
 
 function unlikeItem(itemId) {
-  const token = getToken();
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
+    headers: getAuthHeaders(),
+  });
 }
 
 function updateUser(name, avatar) {
-  const token = getToken();
   return request(`${baseUrl}/users/me`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getAuthHeaders(),
     body: JSON.stringify({ name, avatar }),
   });
 }
 
 export {
+  baseUrl,
   getItems,
   removeItems,
   addItem,
@@ -85,4 +76,6 @@ export {
   likeItem,
   unlikeItem,
   updateUser,
+  BASE_HEADERS,
+  getAuthHeaders,
 };

@@ -1,4 +1,5 @@
 import "./EditProfileModal.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useContext, useState, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -6,17 +7,28 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateUser({ name, avatar });
   };
 
+  const checkFormValidity = () => {
+    const isValid = name.length >= 1 && name.length <= 30 && avatar.length > 0;
+    return isValid;
+  };
+
+  useEffect(() => {
+    setIsFormValid(checkFormValidity());
+  }, [name, avatar]);
+
   // initialize form with current user data
   useEffect(() => {
     if (currentUser) {
       setName(currentUser.name);
       setAvatar(currentUser.avatar);
+      setIsFormValid(false);
     }
   }, [currentUser]);
 
@@ -53,7 +65,12 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
               />
             </label>
           </fieldset>
-          <button type="submit" className="modal__submit">
+          <button
+            type="submit"
+            className={`modal__submit ${
+              isFormValid ? "modal__submit_valid" : ""
+            }`}
+          >
             Save changes
           </button>
         </form>

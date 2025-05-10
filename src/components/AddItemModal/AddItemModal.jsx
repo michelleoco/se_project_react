@@ -6,6 +6,7 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -29,10 +30,24 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
     onAddItemModalSubmit({ name, imageUrl, weather }); //pass the inputs(state variables) (if passed as an object, remeber to desructure when passing to handleAddItemModalSubmit in App.jsx )
   };
 
+  const checkFormValidity = () => {
+    const isValid =
+      name.length >= 1 &&
+      name.length <= 30 &&
+      imageUrl.length > 0 &&
+      (weather === "hot" || weather === "warm" || weather === "cold");
+    return isValid;
+  };
+
+  useEffect(() => {
+    setIsFormValid(checkFormValidity());
+  }, [name, imageUrl, weather]);
+
   useEffect(() => {
     setName(""); //empty the inputs
     setImageUrl("");
     setWeather("");
+    setIsFormValid(false);
   }, [isOpen]);
 
   return (
@@ -44,14 +59,15 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
       isOpen={isOpen}
       onSubmit={handleSubmit} //renaming convention in react to rename the function with "on" when its passed as a prop
       onClick={() => console.log("Button clicked!")}
+      isFormValid={isFormValid}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="add-item-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           name="name"
           className="modal__input"
-          id="name"
+          id="add-item-name"
           placeholder="Name"
           required
           minLength="1"
@@ -60,13 +76,13 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
           value={name}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="add-item-imageUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
           name="link"
           className="modal__input"
-          id="imageUrl"
+          id="add-item-imageUrl"
           placeholder="Image URL"
           required
           onChange={handleImageUrlChange}
@@ -75,9 +91,12 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
+        <label
+          htmlFor="add-item-hot"
+          className="modal__label modal__label_type_radio"
+        >
           <input
-            id="hot"
+            id="add-item-hot"
             type="radio"
             className="modal__radio-input"
             name="weather"
@@ -87,9 +106,12 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
           />{" "}
           <span>Hot</span>
         </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
+        <label
+          htmlFor="add-item-warm"
+          className="modal__label modal__label_type_radio"
+        >
           <input
-            id="warm"
+            id="add-item-warm"
             type="radio"
             className="modal__radio-input"
             name="weather"
@@ -99,9 +121,12 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
           />
           <span>Warm</span>
         </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
+        <label
+          htmlFor="add-item-cold"
+          className="modal__label modal__label_type_radio"
+        >
           <input
-            id="cold"
+            id="add-item-cold"
             type="radio"
             className="modal__radio-input"
             name="weather"

@@ -1,0 +1,15 @@
+.modal__signup-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  opacity: 0.5;
+  position: absolute;
+  bottom: 43px;
+  right: 300px;
+}
+
+.modal__signup-button:hover {
+  opacity: 0.8;
+}

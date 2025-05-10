@@ -26,6 +26,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { signup, signin, checkToken } from "../../utils/auth";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          return checkToken(res.token);
+          return checkToken();
         }
       })
       .then((userData) => {
@@ -62,7 +63,7 @@ function App() {
         closeActiveModal();
         navigate("/profile");
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleRegisterClick = () => {
@@ -77,7 +78,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          return checkToken(res.token);
+          return checkToken();
         }
       })
       .then((userData) => {
@@ -85,9 +86,7 @@ function App() {
         setCurrentUser(userData);
         closeActiveModal();
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   };
 
   const handleEditProfile = () => {
@@ -126,7 +125,7 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const openConfirmationModal = () => {
@@ -139,27 +138,26 @@ function App() {
         setClothingItems((prevItems) => [newItemFromServer, ...prevItems]);
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleCardLike = (id, isLiked) => {
-    const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
     !isLiked
-      ? likeItem(id, token)
+      ? likeItem(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
-      : unlikeItem(id, token)
+          .catch(console.error)
+      : unlikeItem(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
   const handleUpdateUser = ({ name, avatar }) => {
@@ -168,9 +166,7 @@ function App() {
         setCurrentUser(updatedUser);
         closeActiveModal();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -179,7 +175,7 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -187,15 +183,14 @@ function App() {
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      checkToken(jwt)
+      checkToken()
         .then((userData) => {
-          // console.log("User data from token:", userData);
           setIsLoggedIn(true);
           setCurrentUser(userData);
         })
@@ -245,14 +240,16 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    clothingItems={clothingItems}
-                    handleCardClick={handleCardClick}
-                    handleAddClick={handleAddClick}
-                    onLogout={handleLogout}
-                    onEditProfile={handleEditProfile}
-                    handleCardLike={handleCardLike}
-                  />
+                  <ProtectedRoute>
+                    <Profile
+                      clothingItems={clothingItems}
+                      handleCardClick={handleCardClick}
+                      handleAddClick={handleAddClick}
+                      onLogout={handleLogout}
+                      onEditProfile={handleEditProfile}
+                      handleCardLike={handleCardLike}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -279,12 +276,14 @@ function App() {
             onClose={closeActiveModal}
             activeModal={activeModal}
             onLoginSubmit={handleLoginSubmit}
+            onRegisterClick={handleRegisterClick}
           />
           <RegisterModal
             isOpen={activeModal === "signUp"}
             onClose={closeActiveModal}
             activeModal={activeModal}
             onRegisterSubmit={handleRegisterSubmit}
+            onLoginClick={handleLoginClick}
           />
           <EditProfileModal
             isOpen={activeModal === "edit-profile"}
