@@ -74,8 +74,6 @@ Key steps included:
 
 ## Screenshots
 
-_(Replace these placeholders with actual screenshots)_
-
 **Homepage (Weather & Recommendations)**  
 ![Homepage Screenshot](./screenshots/homepage.png)
 
@@ -98,7 +96,6 @@ The WTWR front end delivers:
 
 - **Add drag-and-drop** functionality for wardrobe item organization.
 - **Implement dark mode** for better accessibility.
-- **Improve offline experience** with service workers.
 - **Fix**: Optimize image loading using lazy loading **to achieve** faster mobile performance.
 
 ---
