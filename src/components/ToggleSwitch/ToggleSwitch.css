@@ -17,19 +17,12 @@
   opacity: 0;
 }
 
-/* *:focus {
-  outline: 5px solid red;
-} */
-
 .toggle-switch__circle {
   background-color: black;
   width: 28px;
   height: 28px;
   border-radius: 50%;
   position: absolute;
-  /* pos abs: top, bottom, left, right- works in relation to the 
-  nearest non-parent element w a non-default position (default pos is position: static)
-  So, give the element you want it in respect to a non-default position such as position: relative*/
   left: 0;
   transition: all 0.2s;
 }

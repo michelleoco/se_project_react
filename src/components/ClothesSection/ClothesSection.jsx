@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
-// import { defaultClothingItems } from "../../utils/constants";
 import "./ClothesSection.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -25,7 +24,7 @@ function ClothesSection({
       </div>
       <ul className="clothes-section__items">
         {clothingItems
-          // .filter((item) => item.owner === currentUser.currentUser._id)
+          // Filter items to show only those owned by the current user
           .filter(
             (item) =>
               currentUser?.currentUser?._id &&

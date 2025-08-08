@@ -7,7 +7,7 @@ function ItemModal({ onClose, card, onDelete, isOpen }) {
   const { currentUser } = useContext(CurrentUserContext);
   // Add early return if card is null or undefined
   if (!card) {
-    return null; // or you could return a loading state
+    return null;
   }
   // Checking if the current user is the owner of the current clothing item
   const isOwn = card.owner === currentUser?._id;

@@ -23,7 +23,7 @@ function LoginModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLoginSubmit({ email, password }); //pass the inputs(state variables) (if passed as an object, remeber to desructure when passing to handleAddItemModalSubmit in App.jsx )
+    onLoginSubmit({ email, password });
   };
 
   const checkFormValidity = () => {
@@ -48,7 +48,7 @@ function LoginModal({
       activeModal={activeModal}
       onClose={onClose}
       isOpen={isOpen}
-      onSubmit={handleSubmit} //renaming convention in react to rename the function with "on" when its passed as a prop
+      onSubmit={handleSubmit}
       isFormValid={isFormValid}
     >
       <label htmlFor="login-email" className="modal__label">

@@ -27,7 +27,7 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
       imageUrl,
       weather,
     });
-    onAddItemModalSubmit({ name, imageUrl, weather }); //pass the inputs(state variables) (if passed as an object, remeber to desructure when passing to handleAddItemModalSubmit in App.jsx )
+    onAddItemModalSubmit({ name, imageUrl, weather }); // Pass the values to the parent component
   };
 
   const checkFormValidity = () => {
@@ -57,7 +57,7 @@ function AddItemModal({ onClose, isOpen, activeModal, onAddItemModalSubmit }) {
       activeModal={activeModal}
       onClose={onClose}
       isOpen={isOpen}
-      onSubmit={handleSubmit} //renaming convention in react to rename the function with "on" when its passed as a prop
+      onSubmit={handleSubmit}
       onClick={() => console.log("Button clicked!")}
       isFormValid={isFormValid}
     >

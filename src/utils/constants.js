@@ -1,3 +1,8 @@
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.moonangel.com"
+    : "http://localhost:3001";
+
 export const weatherOptions = [
   {
     day: true,
@@ -92,13 +97,13 @@ export const defaultClothingItems = [
   {
     _id: 3,
     name: "Sneakers",
-    weather: "cold",
+    weather: "hot",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
   },
   {
     _id: 4,
     name: "T-Shirt",
-    weather: "hot",
+    weather: "warm",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
   },
   {

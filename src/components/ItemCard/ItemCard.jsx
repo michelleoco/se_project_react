@@ -10,8 +10,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   const isLoggedIn = Boolean(currentUser);
 
   // Check if the current user has liked this item
-  const isLiked = item.likes.some((id) => id === currentUser?._id);
-
+  const isLiked = item?.likes?.some((id) => id === currentUser?._id) || false;
   const handleCardClick = () => {
     onCardClick(item);
   };
